@@ -1,0 +1,342 @@
+resshift_v1_10x:
+  description: consine | time_step = 3 | 10x | use_gate = False | num_affine = 3
+  
+  dataset:
+    scale_factor: 10
+
+  diffusion:
+    n_timesteps: 3
+    kappa: 0.02
+    sqrt_etas: [0.05, 0.6, 0.99]
+    etas_end: 0.99
+    min_noise_level: 0.04
+    power: 0.3
+    normalize_input: True
+
+  model_type: unet
+  model_params:
+    unet:
+      ch_in_xt: 1
+      dim_lulc_embed: 8
+      use_gate: False
+      ch_base: 32
+      num_affine: 3
+      attn_levels: [2,3]
+      max_seq_len: ${diffusion.n_timesteps}
+
+
+resshift_10x_ch8:
+  description: ch_base = 8
+  
+  dataset:
+    scale_factor: 10
+
+  diffusion:
+    n_timesteps: 3
+    kappa: 0.02
+    sqrt_etas: [0.05, 0.6, 0.99]
+    etas_end: 0.99
+    min_noise_level: 0.04
+    power: 0.3
+    normalize_input: True
+
+  model_type: unet
+  model_params:
+    unet:
+      ch_in_xt: 1
+      dim_lulc_embed: 8
+      use_gate: False
+      ch_base: 8
+      num_affine: 3
+      attn_levels: [2,3]
+      max_seq_len: ${diffusion.n_timesteps}
+
+
+resshift_10x_ch16:
+  description: ch_base = 16
+  
+  dataset:
+    scale_factor: 10
+
+  diffusion:
+    n_timesteps: 3
+    kappa: 0.02
+    sqrt_etas: [0.05, 0.6, 0.99]
+    etas_end: 0.99
+    min_noise_level: 0.04
+    power: 0.3
+    normalize_input: True
+
+  model_type: unet
+  model_params:
+    unet:
+      ch_in_xt: 1
+      dim_lulc_embed: 8
+      use_gate: False
+      ch_base: 16
+      num_affine: 3
+      attn_levels: [2,3]
+      max_seq_len: ${diffusion.n_timesteps}
+
+
+resshift_10x_ch64:
+  description: ch_base = 64
+  
+  dataset:
+    scale_factor: 10
+
+  diffusion:
+    n_timesteps: 3
+    kappa: 0.02
+    sqrt_etas: [0.05, 0.6, 0.99]
+    etas_end: 0.99
+    min_noise_level: 0.04
+    power: 0.3
+    normalize_input: True
+
+  model_type: unet
+  model_params:
+    unet:
+      ch_in_xt: 1
+      dim_lulc_embed: 8
+      use_gate: False
+      ch_base: 64
+      num_affine: 3
+      attn_levels: [2,3]
+      max_seq_len: ${diffusion.n_timesteps}
+
+  dataloader_train:
+    batch_size: 16
+    num_workers: 8
+    pin_memory: True
+    persistent_workers: True
+    shuffle: True
+
+  dataloader_val:
+    batch_size: 16
+    num_workers: 8
+    pin_memory: True
+    persistent_workers: True
+    shuffle: False
+
+
+resshift_v1_10x_hyper1:
+  description: t=3, sqrt_etas=[0.05, 0.6, 0.99], kappa=0.05
+  
+  dataset:
+    scale_factor: 10
+
+  diffusion:
+    n_timesteps: 3
+    kappa: 0.05
+    sqrt_etas: [0.05, 0.6, 0.99]
+    etas_end: 0.99
+    min_noise_level: 0.04
+    power: 0.3
+    normalize_input: True
+
+  model_type: unet
+  model_params:
+    unet:
+      ch_in_xt: 1
+      dim_lulc_embed: 8
+      use_gate: False
+      ch_base: 32
+      num_affine: 3
+      attn_levels: [2,3]
+      max_seq_len: ${diffusion.n_timesteps}
+
+
+resshift_v1_10x_hyper2:
+  description: t=3, sqrt_etas=[0.05, 0.3, 0.99], kappa=0.02
+  
+  dataset:
+    scale_factor: 10
+
+  diffusion:
+    n_timesteps: 3
+    kappa: 0.02
+    sqrt_etas: [0.05, 0.3, 0.99]
+    etas_end: 0.99
+    min_noise_level: 0.04
+    power: 0.3
+    normalize_input: True
+
+  model_type: unet
+  model_params:
+    unet:
+      ch_in_xt: 1
+      dim_lulc_embed: 8
+      use_gate: False
+      ch_base: 32
+      num_affine: 3
+      attn_levels: [2,3]
+      max_seq_len: ${diffusion.n_timesteps}
+
+
+resshift_v1_10x_hyper3:
+  description: t=15, k=1, p=0.3
+  
+  dataset:
+    scale_factor: 10
+
+  diffusion:
+    n_timesteps: 15
+    kappa: 1
+    sqrt_etas: 
+    etas_end: 0.99
+    min_noise_level: 0.04
+    power: 0.3
+    normalize_input: True
+
+  model_type: unet
+  model_params:
+    unet:
+      ch_in_xt: 1
+      dim_lulc_embed: 8
+      use_gate: False
+      ch_base: 32
+      num_affine: 3
+      attn_levels: [2,3]
+      max_seq_len: ${diffusion.n_timesteps}
+
+
+resshift_v1_10x_hyper4:
+  description: t=15, k=0.1, p=0.3
+  
+  dataset:
+    scale_factor: 10
+
+  diffusion:
+    n_timesteps: 15
+    kappa: 0.1
+    sqrt_etas: 
+    etas_end: 0.99
+    min_noise_level: 0.04
+    power: 0.3
+    normalize_input: True
+
+  model_type: unet
+  model_params:
+    unet:
+      ch_in_xt: 1
+      dim_lulc_embed: 8
+      use_gate: False
+      ch_base: 32
+      num_affine: 3
+      attn_levels: [2,3]
+      max_seq_len: ${diffusion.n_timesteps}
+
+
+resshift_v1_20x:
+  description: consine | time_step = 3 | 10x | use_gate = False | num_affine = 3
+  
+  dataset:
+    scale_factor: 20
+    drop_prob: 0.2
+
+  diffusion:
+    n_timesteps: 3
+    kappa: 0.02
+    sqrt_etas: [0.05, 0.6, 0.99]
+    etas_end: 0.99
+    min_noise_level: 0.04
+    power: 0.3
+    normalize_input: True
+
+  model_type: unet
+  model_params:
+    unet:
+      ch_in_xt: 1
+      dim_lulc_embed: 8
+      use_gate: False
+      ch_base: 32
+      num_affine: 3
+      attn_levels: [2,3]
+      max_seq_len: ${diffusion.n_timesteps}
+
+  train:
+    freq_save: 500
+
+
+mocolsk_v1_10x:
+  description: mocolsk | 10x | ch=32 | mse loss
+  loss_type: mse
+  dataset:
+    scale_factor: 10
+  model_type: mocolsk
+  model_params:
+    mocolsk:
+      num_feats: 32
+      n_resblocks: 2
+      num_stages: 2
+      reduction: 16
+      scale: ${dataset.scale_factor}
+
+
+mocolsk_v1_20x:
+  description: mocolsk | 20x | ch=32 | mse loss
+  loss_type: mse
+  dataset:
+    scale_factor: 20
+  model_type: mocolsk
+  model_params:
+    mocolsk:
+      num_feats: 32
+      n_resblocks: 2
+      num_stages: 2
+      reduction: 16
+      scale: ${dataset.scale_factor}
+
+
+resshift_8x_groklst_v3:
+  description: GrokLST dataset
+
+  dataloader_train:
+    batch_size: 4
+    num_workers: 2
+    pin_memory: True
+    persistent_workers: True
+    shuffle: True
+
+  dataloader_val:
+    batch_size: 2 #8
+    num_workers: 2
+    pin_memory: True
+    persistent_workers: True
+    shuffle: False
+
+  diffusion:
+    n_timesteps: 3
+    kappa: 0.02
+    sqrt_etas: [0.05, 0.6, 0.99]
+    etas_end: 0.99
+    min_noise_level: 0.04
+    power: 0.3
+    normalize_input: True
+
+  model_type: unet
+  model_params:
+    unet:
+      ch_in_xt: 1
+      dim_lulc_embed: 8
+      use_gate: False
+      ch_base: 32
+      num_affine: 3
+      ch_mult: [1,2,4,8,16]
+      attn_levels: [3,4]
+      max_seq_len: ${diffusion.n_timesteps}
+
+  train:
+    n_epochs: 300
+    patience: 20
+    optimizer:
+      type: adamw
+      params:
+        lr: 1e-4
+        weight_decay: 1e-4
+    scheduler:
+      type: cosine
+      params:
+        T_max: ${train.n_epochs}
+        eta_min: 1e-5

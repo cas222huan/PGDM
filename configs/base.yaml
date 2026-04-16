@@ -1,0 +1,93 @@
+seed: 42
+log: True
+ntfy: 
+device: cuda
+loss_type: mse # mae
+# change the following paths and task_type according to your needs
+folder_landsat_cn20: H:\data\SR\dataset_Landsat_CN20
+folder_landsat_glb: H:\data\SR\landsat_glb_h5
+folder_aster_glb: H:\data\SR\aster_glb_h5
+folder_groklst: J:\groklst_dataset
+task_type: landsat_cn20 # groklst
+
+dataset:
+  hr_size: 160
+  itp_mode: bilinear
+  flip_during_train: True
+  drop_prob: 0.2
+  normalize_params:
+    v_min: -1.0
+    v_max: 1.0
+    lst_min: 180.0
+    lst_max: 360.0
+    ref_min: 0.0
+    ref_max: 1.0
+    ndxi_min: -1.0
+    ndxi_max: 1.0
+    dem_min: -400
+    dem_max: 8800
+  
+dataloader_train:
+  batch_size: 32
+  num_workers: 8
+  pin_memory: True
+  persistent_workers: True
+  shuffle: True
+
+dataloader_val:
+  batch_size: 32
+  num_workers: 2 # 8
+  pin_memory: True
+  persistent_workers: True
+  shuffle: False
+
+train:
+  n_epochs: 300
+  patience: 20
+  freq_save: 1000
+  optimizer:
+    type: adamw
+    params:
+      lr: 1e-4
+      weight_decay: 1e-4
+  scheduler:
+    type: cosine
+    params:
+      T_max: ${train.n_epochs}
+      eta_min: 1e-6
+  # scheduler:
+  #   type: reduce
+  #   params:
+  #     mode: min
+  #     factor: 0.1
+  #     patience: 5
+  #     min_lr: 1e-6
+
+model_type: unet
+model_params:
+  unet:
+    ch_in_lst: 1
+    ch_in_xt: 0
+    num_gui: 11
+    len_lulc: 23
+    dim_lulc_embed: 8
+    use_gate: True
+    ch_base: 32
+    ch_mult: [1,2,4,8]
+    ch_out: 1
+    num_affine: 2
+    attn_levels: [3]
+    num_att_heads: 4
+
+  mocolsk:
+    in_channels: 1
+    gui_channels: 10
+    scale: 10
+    num_feats: 32
+    kernel_size: 3
+    mocolsk_kernel_size: 3
+    module: MoCoLSKModule
+    n_resblocks: 4
+    num_stages: 4
+    reduction: 16
+    mlp_type: a
